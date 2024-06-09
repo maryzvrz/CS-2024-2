@@ -1,6 +1,8 @@
 from flask import Flask, send_file
 from pydantic import BaseModel, ValidationError, field_validator
-from lsystem import draw_lines, LFigure, LSystem2D
+from ldraw import draw_lines
+from lfigure import LFigure
+from lsystem2d import LSystem2D
 from io import BytesIO
 
 app = Flask(__name__)
@@ -18,6 +20,7 @@ def l_system(grammatic: str):
         axiom = grammatic_.axiom
         productions = grammatic_.prod
         iterations = grammatic_.iter
+
         angel = grammatic_.angle
         lsystem = LSystem2D(axiom, productions, iterations, angel)
         figure = LFigure(lsystem, size=(1000, 1000))
